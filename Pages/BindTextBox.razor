@@ -1,0 +1,25 @@
+@page "/bindtextbox"
+
+<PageTitle>Bind Textbox</PageTitle>
+
+<p>
+<div class="form-floating mb-3 mt-3">
+    <input class="form-control" placeholder="Input value" type="text" id="tbx1" name="tbx1" @bind:event="oninput" @bind:get="inputValue" @bind:set="OnInput" />
+    <label for="tbx1">Input value:</label>
+</div>
+</p>
+
+<p>
+    <code>inputValue</code>: @
+</p>
+
+@code {
+    private string? inputValue;
+
+    private void OnInput(string value)
+    {
+        var newValue = value ?? string.Empty;
+
+        inputValue = newValue.Length > 255 ? "Long!" : newValue;
+    }
+}

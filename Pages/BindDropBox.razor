@@ -1,0 +1,26 @@
+@page "/binddropbox"
+
+<PageTitle>Bind Dropbox</PageTitle>
+
+<p>
+    <label class="form-label" for="dbx1">Dropbox 1</label> <br>
+    <select class="form-select" id="dbx1" name="dbx1" @bind:event="oninput" @bind:get="selectedValue" @bind:set="OnInput">
+        @foreach (var separator in separators)
+        {
+            <option value="@separator">@separator</option>
+        }
+    </select>
+    <br>
+    <label>Selected value: @selectedValue</label> <br>
+</p>
+
+@code {
+    private string? selectedValue;
+    List<string> separators = new() { "Colon", "Comma", "Dot", "Newline", "Tab" };
+    private void OnInput(string? value)
+    {
+
+        var newValue = value ?? string.Empty;
+        selectedValue = newValue;
+    }
+}

@@ -1,0 +1,32 @@
+@page "/bindcheckbox"
+
+<PageTitle>Bind Textbox</PageTitle>
+
+<p>    
+    <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="cbx1" name="cbx1 "@bind:event="oninput" @bind:get="isChecked" @bind:set="OnInput"/>
+    <label class="form-check-label" for="cbx1">Checkbox 1</label> <br>
+    
+    <label class="form-check-label">Is checked = @isChecked</label> <br>
+    <label class="form-check-label">Status: @s</label> <br>
+    </div>
+</p>
+
+@code {
+    private bool isChecked;
+    private string? s;
+
+    private void OnInput(bool value)
+    {
+        isChecked = value;
+
+        if (isChecked)
+        {            
+        s = "yes";
+        }
+        else{
+            
+        s = "no";
+        }
+    }
+}
